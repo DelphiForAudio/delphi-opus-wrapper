@@ -2,8 +2,6 @@ unit uLibOpusFile;
 
 interface
 
-{$Define AD}
-
 {$if not defined(FPC) and (CompilerVersion<20.00))}
 type
   NativeInt = type Integer;     //Override NativeInt -> Wrong size of NativeInt in Delphi2007
@@ -264,8 +262,12 @@ end;
 function SilentLibOpusFile(LibName: PChar=nil): Boolean;
 begin
   if hlib=0
-  then
+  then begin
+    if LibName=''
+    then
+      LibName := StrLibName;
     hlib := LoadLibrary(LibName);
+  end;
   Result := hlib<>0;
 end;
 

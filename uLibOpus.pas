@@ -270,8 +270,12 @@ end;
 function SilentLibOpus(LibName: PChar=nil): Boolean;
 begin
   if hlib=0
-  then
+  then begin
+    if LibName=''
+    then
+      LibName := StrLibName;
     hlib := LoadLibrary(LibName);
+  end;
   Result := hlib<>0;
 end;
 
