@@ -1,0 +1,19 @@
+**********************************************************************
+* The contents of the files uLibOpus.pas and uLibOpusFile.pas are    *
+* used with permission, subject to the                               *
+*                                                                    *
+*     Mozilla Public LicenseVersion 1.1 (the "License");             *
+*                                                                    *
+* you may not use this files except in compliance with the License.  *
+* You may obtain a copy of the License at                            *
+* http://www.mozilla.org/MPL/MPL-1.1.html                            *
+*                                                                    *
+* Software distributed under the License is distributed on an        *
+* "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express or     *
+* implied. See the License for the specific language governing       *
+* rights and limitations under the License.                          *
+*                                                                    *
+*  Contributor(s)                                                    *
+*  (jh)  Julian Hagerstadt     <julian.hagerstadt@snafu.de>          *
+*                                                                    *
+**********************************************************************
