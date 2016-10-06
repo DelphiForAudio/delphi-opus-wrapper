@@ -2,6 +2,11 @@ unit uLibOpusFile;
 
 interface
 
+{.$Define AD}
+
+uses
+  Windows;
+
 {$if not defined(FPC) and (CompilerVersion<20.00))}
 type
   NativeInt = type Integer;     //Override NativeInt -> Wrong size of NativeInt in Delphi2007
@@ -32,7 +37,9 @@ type
   TOpusHead = THandle;
   TOggOpusFile = THandle;
   TOpusStream = THandle;
+  {$if not declared(size_t)}
   size_t = NativeUInt;
+  {$endif}
 
   op_read_func = function (stream: Pointer; var buffer; nbytes: Integer): Integer; cdecl;
   op_seek_func = function (stream: Pointer; offset: Int64; whence: Integer): Integer; cdecl;
@@ -205,7 +212,7 @@ uses
   {$IFDEF AD}
   uadConsts,
   {$ENDIF}
-  Windows, SysUtils;
+  SysUtils;
 
 const
   StrLibName = 'libopusfile-0.dll';
