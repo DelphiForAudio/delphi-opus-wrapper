@@ -2,6 +2,8 @@ unit uLibOpus;
 
 interface
 
+{.$Define AD}
+
 const
   OPUS_OK = 0;
   OPUS_BAD_ARG = -1;
@@ -32,6 +34,9 @@ const
   OPUS_FRAMESIZE_20_MS = 5004; // Use 20 ms frames
   OPUS_FRAMESIZE_40_MS = 5005; // Use 40 ms frames
   OPUS_FRAMESIZE_60_MS = 5006; // Use 60 ms frames
+  OPUS_FRAMESIZE_80_MS = 5007; // Use 80 ms frames
+  OPUS_FRAMESIZE_100_MS = 5008; // Use 100 ms frames
+  OPUS_FRAMESIZE_120_MS = 5009; // Use 120 ms frames
 
 const
   OPUS_SET_APPLICATION_REQUEST = 4000;
@@ -72,6 +77,8 @@ const
   OPUS_GET_EXPERT_FRAME_DURATION_REQUEST = 4041;
   OPUS_SET_PREDICTION_DISABLED_REQUEST = 4042;
   OPUS_GET_PREDICTION_DISABLED_REQUEST = 4043;
+  OPUS_SET_PHASE_INVERSION_DISABLED_REQUEST = 4046;
+  OPUS_GET_PHASE_INVERSION_DISABLED_REQUEST = 4047;
   OPUS_MULTISTREAM_GET_ENCODER_STATE_REQUEST = 5120;
   OPUS_MULTISTREAM_GET_DECODER_STATE_REQUEST = 5122;
 
@@ -193,6 +200,8 @@ function OPUS_GET_BANDWIDTH(var x: Integer): TOpusCTLRequestRecord; inline;
 function OPUS_GET_FINAL_RANGE(var x: Cardinal): TOpusCTLRequestRecord; inline;
 function OPUS_GET_SAMPLE_RATE(var x: Integer): TOpusCTLRequestRecord; inline;
 function OPUS_RESET_STATE: TOpusCTLRequestRecord; inline;
+function OPUS_GET_PHASE_INVERSION_DISABLED(var x: Integer): TOpusCTLRequestRecord; inline;
+function OPUS_SET_PHASE_INVERSION_DISABLED(x: Integer): TOpusCTLRequestRecord; inline;
 
 // These are convenience macros for use with the opus_decode_ctl interface.
 function OPUS_GET_GAIN(var x: Integer): TOpusCTLRequestRecord; inline;
@@ -1009,6 +1018,13 @@ begin
   Result.PtrValue := @x;
 end;
 
+function OPUS_GET_PHASE_INVERSION_DISABLED(var x: Integer): TOpusCTLRequestRecord; inline;
+begin
+  Result.Request := OPUS_GET_PHASE_INVERSION_DISABLED_REQUEST;
+  Result.ReqType := orPointer;
+  Result.PtrValue := @x;
+end;
+
 function OPUS_SET_APPLICATION(x: Integer): TOpusCTLRequestRecord; inline;
 begin
   Result.Request := OPUS_SET_APPLICATION_REQUEST;
@@ -1110,6 +1126,13 @@ end;
 function OPUS_SET_VBR_CONSTRAINT(x: Integer): TOpusCTLRequestRecord; inline;
 begin
   Result.Request := OPUS_SET_VBR_CONSTRAINT_REQUEST;
+  Result.ReqType := orInteger;
+  Result.IntValue := x;
+end;
+
+function OPUS_SET_PHASE_INVERSION_DISABLED(x: Integer): TOpusCTLRequestRecord; inline;
+begin
+  Result.Request := OPUS_SET_PHASE_INVERSION_DISABLED_REQUEST;
   Result.ReqType := orInteger;
   Result.IntValue := x;
 end;

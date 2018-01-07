@@ -96,6 +96,11 @@ var
   Error: Integer;
 begin
   try
+    if ParamCount<>2
+    then begin
+      WriteLn('usage: OpusToWav input.opus output.wav');
+      exit;
+    end;
     LoadLibOpus;
     WriteLn(AnsiToOEM(Format('LibOpus Version %s', [UTF8ToAnsi(opus_get_version_string)])));
     LoadLibOpusFile;
