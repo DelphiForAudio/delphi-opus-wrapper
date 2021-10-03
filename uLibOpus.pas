@@ -2,7 +2,7 @@ unit uLibOpus;
 
 interface
 
-{$Define AD}
+{.$Define AD}
 
 const
   OPUS_OK = 0;
