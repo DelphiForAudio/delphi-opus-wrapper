@@ -2,8 +2,8 @@ unit uLibOpusFile;
 
 interface
 
-{.$Define AD}
-
+{$define AD}
+{ C-Runtime 2013 needed }
 uses
   Windows;
 
@@ -204,7 +204,7 @@ function op_read_float_stereo(OpusFile: TOggOpusFile; var pcm; SampleCount: Inte
 
 function FreeLibOpusFile: Boolean;
 function SilentLibOpusFile(LibName: PChar=nil): Boolean;
-procedure LoadLibOpusFile(LibName: PChar=nil);               //Laden mit Exception
+procedure LoadLibOpusFile(LibName: PChar=nil);               //raise Exception
 
 implementation
 
@@ -244,7 +244,7 @@ begin
   end;
 end;
 
-procedure LoadLibOpusFile(LibName: PChar=nil);               //Laden mit Exception
+procedure LoadLibOpusFile(LibName: PChar=nil);
 var
   err: DWORD;
 begin
