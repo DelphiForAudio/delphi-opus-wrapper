@@ -2,7 +2,7 @@ unit uLibOpusFile;
 
 interface
 
-{$define AD}
+{.$define AD}
 { C-Runtime 2013 needed }
 uses
   Windows;
